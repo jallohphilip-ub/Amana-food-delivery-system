@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salone Eats 🇸🇱 - Food Delivery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: green;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    #menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+      padding: 1em;
+    }
+    .menu-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .menu-item-content {
+      padding: 0.5em 1em 1em 1em;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-item h2 {
+      margin: 0.5em 0 0.3em 0;
+      font-size: 1.3em;
+      color: #333;
+    }
+    .menu-item p.description {
+      flex-grow: 1;
+      margin: 0 0 0.5em 0;
+      color: #555;
+      font-size: 0.95em;
+    }
+    .menu-item .price {
+      font-weight: bold;
+      color: darkgreen;
+      font-size: 1.1em;
+      margin-top: auto;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #333;
+      color: white;
+      margin-top: 2em;
+    }
+    @media (max-width: 400px) {
+      header {
+        font-size: 1.5em;
+      }
+      .menu-item img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Salone Eats 🇸🇱</header>
+  <main id="menu-container"></main>
+  <footer>&copy; 2025 Salone Eats</footer>
+
+  <script>
+    const menuItems = [
+      {
+        id: 1,
+        name: "Cassava Leaves",
+        description: "A stew made from cassava leaves, served with rice.",
+        price: 40,
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Cassava_Leaves_Soup_in_Sierra_Leone.jpg"
+      },
+      {
+        id: 2,
+        name: "Jollof Rice",
+        description: "Spiced rice cooked with tomato, peppers, and vegetables.",
+        price: 35,
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jollof_rice_and_salad.jpg"
+      },
+      {
+        id: 3,
+        name: "Fufu and Soup",
+        description: "Fufu served with groundnut or okra soup.",
+        price: 50,
+        image: "https://upload.wikimedia.org/wikipedia/commons/3/35/Fufu_and_Okra_Soup.jpg"
+      },
+      {
+        id: 4,
+        name: "Groundnut Soup",
+        description: "Creamy peanut soup served with rice or fufu.",
+        price: 45,
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Groundnut_soup_and_fufu.jpg"
+      }
+    ];
+
+    function loadMenu() {
+      const container = document.getElementById("menu-container");
+      container.innerHTML = ""; // clear
+
+      menuItems.forEach(item => {
+        const itemHTML = `
+          <div class="menu-item">
+            <img src="${item.image}" alt="${item.name}" loading="lazy" />
+            <div class="menu-item-content">
+              <h2>${item.name}</h2>
+              <p class="description">${item.description}</p>
+              <p class="price">Le ${item.price}</p>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("beforeend", itemHTML);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadMenu);
+  </script>
+</body>
+</html>
